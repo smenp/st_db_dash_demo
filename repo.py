@@ -2,6 +2,7 @@ import json
 import os
 import duckdb
 import pandas
+import ipdb
 from uuid import uuid4
 
 def add(name, number):
@@ -22,3 +23,9 @@ def get_all_probes():
      
     probe_df = probe_table.to_df()
     return probe_df
+
+def delete(probe_ids):
+#    ipdb.set_trace()
+    print(f'Trying to delete:\n{probe_ids}')
+    for probe in probe_ids:
+        os.remove(f"probes/probe-{str(probe)}.json")

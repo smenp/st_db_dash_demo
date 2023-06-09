@@ -14,4 +14,10 @@ with add_tab:
 
 with view_tab:
     probes_df = repo.get_all_probes()
-    st.dataframe(probes_df)
+    probes_df['to_delete'] = False
+    probes_df_new = st.data_editor(probes_df)
+    delete_action = st.button("Delete selected probes")
+    if delete_action:
+        probes_todelete = probes_df[probes_df_new['to_delete'] == True].id
+        repo.delete(probes_todelete.values)
+        st.experimental_rerun()
