@@ -2,10 +2,25 @@ import json
 import os
 import duckdb
 import pandas
+from abc import ABC, abstractmethod
 import ipdb
 from uuid import uuid4
 
-class JsonDuckDBProbeRepo:
+class IProbeRepo(ABC):
+
+    @abstractmethod 
+    def add(self, name, number):
+        ...
+
+    @abstractmethod 
+    def get_all_probes(self):
+        ...
+
+    @abstractmethod 
+    def delete(self, probe_ids):
+        ...
+
+class JsonDuckDBProbeRepo(IProbeRepo):
 
     def add(self, name, number):
         probe_id = str(uuid4())
