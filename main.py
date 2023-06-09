@@ -1,6 +1,8 @@
 import streamlit as st
 import repo
 
+repo = repo.JsonDuckDBProbeRepo()
+
 view_tab, add_tab = st.tabs(["View Probes", "Add Probe"])
 
 with add_tab:
