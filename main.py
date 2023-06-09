@@ -8,3 +8,8 @@ submitted = st.button("Submit")
 
 if submitted:
     repo.add(probe_name, probe_num)
+
+get_probes = st.button("List all probes")
+if get_probes:
+    probes_df = repo.get_all_probes()
+    st.dataframe(probes_df)
