@@ -7,4 +7,4 @@ probe_num = st.number_input("Probe number", 1, step=1)
 submitted = st.button("Submit")
 
 if submitted:
-    repo.save(probe_name, probe_num)
+    repo.add(probe_name, probe_num)
