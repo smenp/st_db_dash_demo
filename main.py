@@ -1,7 +1,7 @@
 import streamlit as st
-import repo
+import json_repo
 
-repo = repo.JsonDuckDBProbeRepo()
+json_repo = json_repo.JsonDuckDBProbeRepo()
 
 view_tab, add_tab = st.tabs(["View Probes", "Add Probe"])
 
@@ -12,14 +12,14 @@ with add_tab:
     submitted = st.button("Submit")
 
     if submitted:
-        repo.add(probe_name, probe_num)
+        json_repo.add(probe_name, probe_num)
 
 with view_tab:
-    probes_df = repo.get_all_probes()
+    probes_df = json_repo.get_all_probes()
     probes_df['to_delete'] = False
     probes_df_new = st.data_editor(probes_df)
     delete_action = st.button("Delete selected probes")
     if delete_action:
         probes_todelete = probes_df[probes_df_new['to_delete'] == True].id
-        repo.delete(probes_todelete.values)
+        json_repo.delete(probes_todelete.values)
         st.experimental_rerun()

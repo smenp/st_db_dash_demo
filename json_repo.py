@@ -1,24 +1,13 @@
 import json
 import os
-import duckdb
-import pandas
-from abc import ABC, abstractmethod
-import ipdb
 from uuid import uuid4
 
-class IProbeRepo(ABC):
+import duckdb
+import ipdb
+import pandas
 
-    @abstractmethod 
-    def add(self, name, number):
-        ...
+from repo_abc import IProbeRepo
 
-    @abstractmethod 
-    def get_all_probes(self):
-        ...
-
-    @abstractmethod 
-    def delete(self, probe_ids):
-        ...
 
 class JsonDuckDBProbeRepo(IProbeRepo):
 
@@ -46,3 +35,4 @@ class JsonDuckDBProbeRepo(IProbeRepo):
         print(f'Trying to delete:\n{probe_ids}')
         for probe in probe_ids:
             os.remove(f"probes/probe-{str(probe)}.json")
+            
